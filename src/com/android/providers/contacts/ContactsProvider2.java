@@ -813,8 +813,6 @@ public class ContactsProvider2 extends AbstractContactsProvider
             .add(Contacts.IS_USER_PROFILE)
             .addAll(sContactsColumns)
             .addAll(sContactsPresenceColumns)
-            .add(RawContacts.ACCOUNT_TYPE)
-            .add(RawContacts.ACCOUNT_NAME)
             .build();
 
     /** Contains just the contacts columns */
@@ -966,7 +964,6 @@ public class ContactsProvider2 extends AbstractContactsProvider
             .addAll(sDataColumns)
             .addAll(sDataPresenceColumns)
             .addAll(sContactsColumns)
-            .addAll(sRawContactColumns)
             .addAll(sContactPresenceColumns)
             .addAll(sDataUsageColumns)
             .build();
@@ -2919,7 +2916,7 @@ public class ContactsProvider2 extends AbstractContactsProvider
         mSyncToMetadataNetWork |= callerIsSyncAdapter;
 
         final int aggregationMode = getIntValue(values, RawContacts.AGGREGATION_MODE,
-                RawContacts.AGGREGATION_MODE_SUSPENDED);
+                RawContacts.AGGREGATION_MODE_DEFAULT);
         mAggregator.get().markNewForAggregation(rawContactId, aggregationMode);
 
         // Trigger creation of a Contact based on this RawContact at the end of transaction.
